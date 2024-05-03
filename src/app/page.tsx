@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 
-import HtmlEditor from "@/components/HtmlEditor";
+import CodeEditor from "@/components/CodeEditor";
 import ResultViewer from "@/components/ResultViewer";
 
+import "react-tabs/style/react-tabs.css";
 import styles from "./page.module.scss";
 
 export default function Home() {
@@ -13,8 +14,12 @@ export default function Home() {
   return (
     <div className={styles.wrapper}>
       <main className={styles.main}>
-        <HtmlEditor setHtml={setHtml} />
-        <ResultViewer html={html} />
+        <section className={styles.editor}>
+          <CodeEditor setHtml={setHtml} />
+        </section>
+        <section className={styles.result}>
+          <ResultViewer html={html} />
+        </section>
       </main>
     </div>
   );

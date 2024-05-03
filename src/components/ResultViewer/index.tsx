@@ -10,6 +10,7 @@ export default function ResultViewer({ html }: ResultViewerProps) {
   const baseHtml = `
     <html>
       <head>
+        <link rel="stylesheet" href="${process.env.NEXT_PUBLIC_HOST}/style.css">
       </head>
       <body>
         ${html}
