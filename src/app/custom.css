@@ -1,0 +1,4 @@
+/* ::after 擬似要素を無効にする */
+.react-tabs__tab--selected::after {
+  display: none;
+}

@@ -4,13 +4,16 @@ import styles from "./style.module.scss";
 
 type ResultViewerProps = {
   html: string;
+  css: string;
 };
 
-export default function ResultViewer({ html }: ResultViewerProps) {
+export default function ResultViewer({ html, css }: ResultViewerProps) {
   const baseHtml = `
     <html>
       <head>
-        <link rel="stylesheet" href="${process.env.NEXT_PUBLIC_HOST}/style.css">
+        <style>
+          ${css}
+        </style>
       </head>
       <body>
         ${html}
@@ -20,9 +23,7 @@ export default function ResultViewer({ html }: ResultViewerProps) {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.resultViewer}>
-        <iframe className={styles.iframe} srcDoc={baseHtml} />
-      </div>
+      <iframe className={styles.iframe} srcDoc={baseHtml} />
     </div>
   );
 }

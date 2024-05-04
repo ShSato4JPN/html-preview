@@ -1,13 +1,22 @@
 .wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 100vw;
+  display: grid;
+  place-items: center;
   height: 100vh;
 }
 
 .main {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+.editor {
+  width: 50vw;
+  padding: 10px;
+}
+
+.result {
+  width: 50vw;
+  height: 100%;
+  padding: 10px;
 }

@@ -1,11 +1,30 @@
+"use client";
+
+import { useRef } from "react";
+
 import styles from "./style.module.scss";
 
-export default function CssEditor() {
+type CssEditorProps = {
+  css: string;
+  setCss: (css: string) => void;
+};
+
+export default function CssEditor({ css, setCss }: CssEditorProps) {
+  const textAreaRef = useRef<HTMLTextAreaElement>(null);
+
+  const handleKeyUp = () => {
+    setCss(textAreaRef.current?.value || "");
+  };
+
   return (
     <div className={styles.wrapper}>
-      <div className={styles.cssEditor}>
-        <textarea className={styles.textarea} />
-      </div>
+      <textarea
+        className={styles.textArea}
+        onKeyUp={handleKeyUp}
+        ref={textAreaRef}
+      >
+        {css}
+      </textarea>
     </div>
   );
 }

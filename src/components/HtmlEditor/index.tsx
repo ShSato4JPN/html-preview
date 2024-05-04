@@ -1,21 +1,30 @@
 "use client";
 
+import { useRef } from "react";
+
 import styles from "./style.module.scss";
 
 type HtmlEditorProps = {
+  html: string;
   setHtml: (html: string) => void;
 };
 
-export default function HtmlEditor({ setHtml }: HtmlEditorProps) {
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    setHtml(event.currentTarget.value);
+export default function HtmlEditor({ html, setHtml }: HtmlEditorProps) {
+  const textAreaRef = useRef<HTMLTextAreaElement>(null);
+
+  const handleKeyUp = () => {
+    setHtml(textAreaRef.current?.value || "");
   };
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.htmlEditor}>
-        <textarea className={styles.textArea} onKeyDown={handleKeyDown} />
-      </div>
+      <textarea
+        className={styles.textArea}
+        onKeyUp={handleKeyUp}
+        ref={textAreaRef}
+      >
+        {html}
+      </textarea>
     </div>
   );
 }
